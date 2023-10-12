@@ -89,57 +89,74 @@
   // Pavlov says meow to me!
   // true
 
-  function curriedSum(numArgs) {
-    let numbers = [];
+//   function curriedSum(numArgs) {
+//     let numbers = [];
 
-    return function _curriedSum(num) {
-      numbers.push(num);
+//     return function _curriedSum(num) {
+//       numbers.push(num);
 
-      if (numbers.length === numArgs) {
-        return numbers.reduce((acc,el) => acc + el);
-      } else {
-        return _curriedSum;
-      }
-    }
-  };
+//       if (numbers.length === numArgs) {
+//         return numbers.reduce((acc,el) => acc + el);
+//       } else {
+//         return _curriedSum;
+//       }
+//     }
+//   };
 
-  const sum = curriedSum(4);
-  console.log(sum(5)(30)(20)(1)); // => 56
+//   const sum = curriedSum(4);
+//   console.log(sum(5)(30)(20)(1)); // => 56
 
-  function curriedSum(numArgs) {
-    let numbers = [];
+//   function curriedSum(numArgs) {
+//     let numbers = [];
 
-    return function _curriedSum(num) {
-      numbers.push(num);
+//     return function _curriedSum(num) {
+//       numbers.push(num);
 
-      if (numbers.length === numArgs) {
-        return numbers.reduce((acc,el) => acc + el);
-      } else {
-        return _curriedSum;
-      }
-    }
-  };
+//       if (numbers.length === numArgs) {
+//         return numbers.reduce((acc,el) => acc + el);
+//       } else {
+//         return _curriedSum;
+//       }
+//     }
+//   };
 
-  Function.prototype.curry = function(numArgs) {
-    let args = [];
-    let originalFunc = this;
+//   Function.prototype.curry = function(numArgs) {
+//     let args = [];
+//     let originalFunc = this;
 
-    return function _curry(element) {
-      args.push(element); 
+//     return function _curry(element) {
+//       args.push(element);
 
-      if (args.length === numArgs) {
-        return originalFunc(...args);
-      } else {
-        return _curry;
-      }
-    }
-  }
+//       if (args.length === numArgs) {
+//         return originalFunc(...args);
+//       } else {
+//         return _curry;
+//       }
+//     }
+//   }
 
-  function printer(arg1,arg2,arg3) {
-    console.log(`${arg1 * 2},${arg2 * 2},${arg3 * 2}`)
-  }
+//   function printer(arg1,arg2,arg3) {
+//     console.log(`${arg1 * 2},${arg2 * 2},${arg3 * 2}`)
+//   }
 
-  let printerFunc = printer.curry(3);
-  printerFunc(3)(6)(9);
+//   let printerFunc = printer.curry(3);
+//   printerFunc(3)(6)(9);
 
-  
+
+
+Function.prototype.inherits = function() {
+    Object.create.protoype = MovingObject.prototype;
+    Ship.prototype = new Object();
+    Ship.prototype.constructor = Ship;
+};
+
+Ship.prototype.shoot = function() {
+    console.log(`${this.name} is shooting`);
+};
+
+function Ship(name) {
+    this.name = name;
+}
+
+const ship = new Ship('Batman');
+ship.shoot();
